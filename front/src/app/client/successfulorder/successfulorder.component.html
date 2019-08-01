@@ -1,0 +1,25 @@
+<div class="container">
+	<app-subheader action="successful-order"></app-subheader>
+	<table class="table table-responsive-xl">
+		<thead>
+			<th>Amount (LC)</th>
+			<th>Price</th>
+			<th>BTC Amount Paid</th>
+			<th>Total BTC Price To Received</th>
+			<th>Conversion Type</th>
+			<th>Date</th>
+			<th>Fee (LC)</th>
+		</thead>
+		<tbody>
+			<tr *ngFor='let order of orders'>
+				<td>{{ order.lcamount }}</td>
+				<td>{{ order.rate | number:'0.0-15' }}</td>
+				<td>{{ order.btc_paid ? order.btc_paid : "---" }}</td>
+				<td>{{ order.btc_receive ? order.btc_receive : "---" }}</td>
+				<td>{{ order.type == 'btol' ? 'BTC To LC' : 'LC To BTC' }}</td>
+				<td>{{ order.date  | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+				<td>{{ order.fee | number:'0.0-5' }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="search-hero col-md-6 col-sm-6">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" (keyup)="search_total_calcu()" autocomplete="off" placeholder="Search product name, sold date...">
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <button class="btn btn-secondary btn-block">Print Record</button>
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <button class="btn btn-secondary btn-block">Edit Product Info</button>
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <button class="btn btn-secondary btn-block">Refillable Products</button>
+    </div>
+</div>
+
+<div class="row  mb-10">
+    <div class="col-sm-6 col-md-6">
+        <div class="card text-white bg-danger text-center">
+            <div class="card-body">
+                <strong>Highest Price Sold @ : {{ max_lctobtc | number:'0.0-15' }} LC</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="card text-white bg-success text-center">
+            <div class="card-body">
+                <strong>Lowest Price Sold @ : {{ min_lctobtc | number:'0.0-15' }} LC</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="card text-white bg-dark text-center">
+            <div class="card-body">
+                <strong>Search Result Sold @ : {{ total_purchase }} LC</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="card text-white bg-primary text-center">
+            <div class="card-body">
+                <strong>Overall Sold Amount @ : {{ total_purchase }} LC</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center" *ngIf="!getSalesInventory.length; else display_products">
+        <strong>* There is no sales inventory.</strong>
+    </div>
+    <ng-template #display_products>
+        <div class="col-md-4" *ngFor="let bzp of getSalesInventory | keyvalue | filter:searchText">
+            <div class="card mb-4 text-white bg-dark">
+                <img class="card-img-top" src="assets/{{ bzp.value.Pro_Info[0].bzp_photo }}" alt="bzp.value.Pro_Info[0].bp_name">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Order No : {{ bzp.value.orderid }}</h5>
+                    <h5 class="card-title text-success">Buyer ID : {{ bzp.value.userid }}</h5>
+                    <h5 class="card-title text-success">Bazaar # : {{ bzp.value.Pro_Info[0].userid }}</h5>
+                    <h5 class="card-title text-success">Product Name : {{ bzp.value.Pro_Info[0].bp_name }}</h5>
+                    <h5 class="card-title text-success">Claim Code : {{ bzp.value.claim }}</h5>
+                    <h5 class="card-title text-success">Sold @ Controlled LC : {{ bzp.value.buy_controlled_lc_price }} LC</h5>
+                    <h5 class="card-title text-success">Sold @ Controlled CC : {{ bzp.value.buy_controlled_cc_price }} {{ curCode }}</h5>
+                    <h5 class="card-title text-success">Number Item Sold : {{ bzp.value.quantity }}</h5>
+                    <h5 class="card-title text-success">Total Paid CC Price : {{ bzp.value.total_payable_cc_price }} {{ curCode}} </h5>
+                    <h5 class="card-title text-success">Total Paid LC : {{ bzp.value.lcamount }} LC</h5>
+                    <h5 class="card-title text-success">TAS : {{ bzp.value.tas }} LC</h5>
+                    <h5 class="card-title text-success">TPS : {{ bzp.value.tps }} LC</h5>
+                    <h5 class="card-title text-success">Bid Placed Date : {{ bzp.value.date | date : 'medium' }}</h5>
+                    <h5 class="card-title text-success">Claimed Date : {{ bzp.value.update_time | date : 'medium' }}</h5>
+                    <h5 class="card-title">Current Availability : {{ bzp.value.Pro_Info[0].availability }}</h5>
+                    <h5 class="card-title">Initial LC Price : {{ bzp.value.Pro_Info[0].initial_lc_price }} LC</h5>
+                    <h5 class="card-title">Initial CC Price : {{ bzp.value.Pro_Info[0].initial_cc_price }} {{ curCode }}</h5>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

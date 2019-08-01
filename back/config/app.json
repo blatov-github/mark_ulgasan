@@ -1,0 +1,7 @@
+{
+    "network": "testnet",
+    "server": {
+        "port": 8080,
+        "secret": "app"
+    }
+}

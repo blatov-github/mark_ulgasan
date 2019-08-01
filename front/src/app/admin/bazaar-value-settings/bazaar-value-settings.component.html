@@ -1,0 +1,25 @@
+<div class="row">
+    <form class="col-md-6 col-lg-3" (ngSubmit)="save()">
+        <div class="form-group">
+            <label>Display Bazaar Signup After Reach Target BTC Conversion</label>
+            <input class="form-control" type="number" name="btc_conversion_target" [(ngModel)]="btc_conversion_target">
+        </div>
+        <div class="form-group">
+            <label>Refill Products If Availability Reach To</label>
+            <input class="form-control" type="number" name="refill_product_availavility" [(ngModel)]="refill_product_availavility">
+        </div>
+        <div class="form-group">
+            <label>Bazaar LC Maintaining Balance</label>
+            <input class="form-control" type="number" name="lc_maintaining_balance" [(ngModel)]="lc_maintaining_balance">
+        </div>
+        <div class="alert alert-success" *ngIf="showSuccess == true">
+            {{ success.message }}
+        </div>
+        <div class="alert alert-danger" *ngIf="showError == true">
+            {{ error.message }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Save">
+        </div>
+    </form>
+</div>
