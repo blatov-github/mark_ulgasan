@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "array-shuffle": "^1.0.1",
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "axios": "^0.18.0",
     "bitcoinjs-lib": "^4.0.2",
     "body-parser": "^1.19.0",
